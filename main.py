@@ -5,7 +5,6 @@ from datetime import datetime
 
 app = FastAPI(title="main")
 
-# Modelo de Dominio (Contrato de Datos)
 class GradeEntry(BaseModel):
     student_id: str = Field(..., example="2026-001")
     subject_id: str = Field(..., example="SISTEMAS-1")
@@ -13,7 +12,6 @@ class GradeEntry(BaseModel):
     score: float = Field(..., ge=0, le=100, description="La nota debe estar entre 0 y 100")
     recorded_at: Optional[datetime] = datetime.now()
 
-# Almacenamiento Volátil (Simulación de Base de Datos para el MVP)
 db_repository: List[GradeEntry] = []
 
 @app.post("/api/v1/grades", status_code=201)
